@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar, {IndexBody} from './components/inicio'
+import Navbar from './components/nav'
+import Body from './components/inicio'
+import './App.css'
 
 function App() {
 
   return (
     <React.Fragment>
       <Navbar />
-      <IndexBody />
+      <Body />
     </React.Fragment>
   )
 }
