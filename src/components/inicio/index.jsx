@@ -11,8 +11,11 @@ const Body = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-  };
+  }
 
+  // const handleSave = (event) => {
+
+  // }
   return (
     <React.Fragment>
       <button className='newTask' onClick={handleShowModal}>
