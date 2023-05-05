@@ -1,69 +1,73 @@
-ul{
-    display: flex;
-    padding-left: 0;
+ul {
+  display: flex;
+  padding-left: 0;
 }
+
 ul li {
-    display: flex;
-    list-style: none;
-    margin-right: 25px;
-  }
+  display: flex;
+  list-style: none;
+  margin-right: 25px;
+}
 
 ul li a {
-    font-size: 26px;
-    font-weight: 500;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: white;
-    padding: 10px;
-    transition: 0.5 ease;
+  font-size: 26px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  transition: 0.5 ease;
 }
 
 ul:hover li a {
-    color: #096d4f
+  color: #096d4f
 }
 
-ul:hover li a:not(:hover){
-    color: white;
-    opacity: .5;
-    filter: blur(1px);
+ul:hover li a:not(:hover) {
+  color: white;
+  opacity: .5;
+  filter: blur(1px);
 }
+
 .newTask {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 500;
   margin-top: 36px;
   margin-left: 90%;
-	background-color:#12b886;
-	border-radius:15px;
-	border:1px solid #18dda2;
-	display:inline-block;
-	cursor:pointer;
-	color:white;
-	font-size:17px;
-	padding:16px 31px;
-	text-decoration:none;
-}
-.newTask:hover {
-    color: #096d4f;
-}
-.newTask:active {
-	position:relative;
-	top:1px;
+  background-color: #12b886;
+  border-radius: 15px;
+  border: 1px solid #18dda2;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-size: 17px;
+  padding: 16px 31px;
+  text-decoration: none;
 }
 
-.noTasks{
-    font-weight: 300;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    width: 600px;
-    height: 250px;
-    align-items: center;
-    background-color: #18dda28a;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-top: 120px;
+.newTask:hover {
+  color: #096d4f;
+}
+
+.newTask:active {
+  position: relative;
+  top: 1px;
+}
+
+.noTasks {
+  font-weight: 300;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 600px;
+  height: 250px;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.259);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 120px;
 }
 
 .modal-overlay {
@@ -87,7 +91,8 @@ ul:hover li a:not(:hover){
   flex-direction: column;
   width: 450px;
 }
-#modalH1{
+
+#modalH1 {
   margin: auto;
 }
 
@@ -106,11 +111,12 @@ ul:hover li a:not(:hover){
   border: 1px solid #ccc;
 }
 
-.modal-buttons{
+.modal-buttons {
   display: flex;
   justify-content: end;
   margin-top: 15px;
 }
+
 .modal-buttons button {
   margin-left: 10px;
   padding: 10px 20px;
@@ -133,14 +139,16 @@ ul:hover li a:not(:hover){
 
 
 /* ////////////////////////// */
-@media (max-width: 1368px) { 
+@media (max-width: 1368px) {
   ul li a {
     font-size: 20px;
     padding: 5px;
   }
+
   .noTasks {
     height: 200px;
   }
+
   .newTask {
     display: flex;
     margin-left: auto;
@@ -150,31 +158,35 @@ ul:hover li a:not(:hover){
 }
 
 @media (max-width: 768px) {
-    ul {
-      flex-direction: column;
-      align-items: center;
-    }
-    ul li {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    .newTask {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20px;
-    }
-    .noTasks {
-      width: 90vw;
-      height: 300px;
-    }
+  ul {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  @media (max-width: 480px) { 
-    ul li a {
-      font-size: 20px;
-      padding: 5px;
-    }
-    .noTasks {
-      height: 200px;
-    }
+
+  ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
+
+  .newTask {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
+  .noTasks {
+    width: 90vw;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  ul li a {
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  .noTasks {
+    height: 200px;
+  }
+}
