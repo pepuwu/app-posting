@@ -137,6 +137,52 @@ ul:hover li a:not(:hover) {
   margin-left: 20px;
 }
 
+/* ////////////////////////////////// */
+.tasks-container {
+  max-width: 1368px;
+  margin: 30px auto;
+  padding: 0 15px 0 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.task-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.task-card>button {
+  position: absolute;
+  font-size: 20px;
+  align-content: center;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.task-card>button:hover {
+  background-color: #31ecb4bf;
+}
+
+
+.task-card button i {
+  color: #fff;
+  font-size: 18px;
+}
+
+.task-card div {
+  margin-bottom: 5px;
+}
+
 
 /* ////////////////////////// */
 @media (max-width: 1368px) {
@@ -155,6 +201,11 @@ ul:hover li a:not(:hover) {
     margin-right: auto;
     margin-top: 20px;
   }
+
+  .tasks-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -178,6 +229,11 @@ ul:hover li a:not(:hover) {
     width: 90vw;
     height: 300px;
   }
+
+  .tasks-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 768px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -188,5 +244,10 @@ ul:hover li a:not(:hover) {
 
   .noTasks {
     height: 200px;
+  }
+
+  .tasks-container {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 480px;
   }
 }
