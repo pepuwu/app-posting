@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addUser } from '../../redux/userSlice';
 import { SelectFromList } from '../inputs/selectFromList';
 import { priorityList, statusInitializedList, statusList } from '../../const/constants';
 import { TextInputs } from '../inputs/textInputs';
@@ -15,8 +13,8 @@ const Body = ({ saveRegister, taskRegistered }) => {
     id: 0,
     name: '',
     email: '',
-    priority: '',
-    status: 'no iniciado',
+    priority: '1',
+    status: '1',
     task: '',
     isNew: true
   })
@@ -35,6 +33,11 @@ const Body = ({ saveRegister, taskRegistered }) => {
   const handleCloseModal = () => {
     setShowModal(false)
     setEditTask({})
+  }
+
+  const getNameByArray = (value, array) => {
+    const findNameOnArray = array.find((element) => (element.value === value))
+    return findNameOnArray ? findNameOnArray.label : 'Not recognized'
   }
 
   const handleEditModal = (task) => {
@@ -61,8 +64,8 @@ const Body = ({ saveRegister, taskRegistered }) => {
         ...register,
         name: '',
         email: '',
-        priority: '',
-        status: 'no iniciado',
+        priority: '1',
+        status: '1',
         task: '',
         isNew: true
       })
@@ -81,8 +84,14 @@ const Body = ({ saveRegister, taskRegistered }) => {
 
             <TextInputs handleChange={handleChange} label={'Name:'} id={'name'} name={'name'} value={register.name} />
             <TextInputs handleChange={handleChange} label={'Email:'} id={'email'} name={'email'} value={register.email} />
-            <SelectFromList handleChange={handleChange} selectList={priorityList} label={'Priority'} id={'priority'} name={'priority'} isNew={false} />
-            <SelectFromList handleChange={handleChange} selectList={register.isNew ? statusInitializedList : statusList} label={'Status'} id={'status'} name={'status'} isNew={register.isNew} />
+
+            <SelectFromList handleChange={handleChange}
+              selectList={priorityList} label={'Priority'}
+              id={'priority'} name={'priority'} isNew={false} value={register.priority} />
+
+            <SelectFromList handleChange={handleChange}
+              selectList={register.isNew ? statusInitializedList : statusList}
+              label={'Status'} id={'status'} name={'status'} isNew={register.isNew} value={register.status} />
 
             <label id='task'>Assigned task:</label>
             <textarea id='task' name='task' rows='4' value={register.task} onChange={handleChange}></textarea>
@@ -102,8 +111,8 @@ const Body = ({ saveRegister, taskRegistered }) => {
               <button onClick={() => handleEditModal(task)}><FaRegEdit /></button>
               <div>{task.name}</div>
               <div>{task.email}</div>
-              <div>{task.priority}</div>
-              <div>{task.status}</div>
+              <div>{getNameByArray(task.priority, priorityList)}</div>
+              <div>{getNameByArray(task.status, statusList)}</div>
               <div>{task.task}</div>
             </div>
           ))}

@@ -1,12 +1,12 @@
 import React from "react";
 
-export const SelectFromList = ({ handleChange, selectList, label, id, name, isNew }) => {
+export const SelectFromList = ({ handleChange, selectList, label, id, name, isNew, value }) => {
     return (
         <React.Fragment>
             <label id={id}>{label}</label>
-            <select id={id} name={name} onChange={handleChange} disabled={isNew}>
+            <select id={id} name={name} onChange={handleChange} disabled={isNew} value={value}>
                 {selectList.map((item) => (
-                    <option key={item.value} value={item.label}>
+                    <option key={item.value} value={item.value}>
                         {item.label}
                     </option>
                 ))}
@@ -14,4 +14,3 @@ export const SelectFromList = ({ handleChange, selectList, label, id, name, isNe
         </React.Fragment>
     )
 }
-{/* <SelectFromList handleChange={handleChange} selectList={register.isNew ? statusInitializedList : statusList} label={'Status'} id={'status'} name={'status'} /> */ }
