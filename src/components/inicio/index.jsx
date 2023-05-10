@@ -10,10 +10,8 @@ import './index.css'
 
 
 const Body = ({ saveRegister, taskRegistered }) => {
-  const dispatch = useDispatch()
   const [showModal, setShowModal] = useState(false)
-  const [tasks, setTasks] = useState([])
-  const [register, setRegistroData] = useState({
+  const [register, setRegister] = useState({
     id: 0,
     name: '',
     email: '',
@@ -26,7 +24,7 @@ const Body = ({ saveRegister, taskRegistered }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setRegistroData({ ...register, [name]: value })
+    setRegister({ ...register, [name]: value })
   }
 
 
@@ -40,30 +38,27 @@ const Body = ({ saveRegister, taskRegistered }) => {
   }
 
   const handleEditModal = (task) => {
-    setRegistroData(task)
+    setRegister(task)
     setShowModal(true)
 
   }
 
   const handleSave = () => {
+
     if (register.name !== '' && register.email !== '') {
-      setShowModal(false)
-      const registerWithID = { ...register, id: register.id += 1, isNew: false };
-      saveRegister([...taskRegistered, registerWithID])
-      setTasks([...tasks, registerWithID])
-
-      const existingTask = tasks.find((task) => task.id === registerWithID.id);
-      if (existingTask) {
-        const updatedTasks = tasks.map((task) => (task.id === existingTask.id ? registerWithID : task));
-        console.log(task - 1)
-        setTasks(updatedTasks);
-        tasks.pop(task.id == task)
+      const existingTask = taskRegistered.find((task) => task.id === register.id);
+      if (!register.isNew) {
+        const updatedTasks = taskRegistered.map((task) => (task.id === existingTask.id ? register : task));
+        saveRegister(updatedTasks);
       } else {
-        setTasks([...tasks, registerWithID]);
-      }
+        const registerWithID = { ...register, id: register.id += 1, isNew: false };
+        saveRegister([...taskRegistered, registerWithID])
 
-      dispatch(addUser(register))
-      setRegistroData({
+      }
+      setShowModal(false)
+
+      setRegister({
+        ...register,
         name: '',
         email: '',
         priority: '',
@@ -93,15 +88,16 @@ const Body = ({ saveRegister, taskRegistered }) => {
             <textarea id='task' name='task' rows='4' value={register.task} onChange={handleChange}></textarea>
 
             <div className='modal-buttons'>
-              <ModalButtons id='saveButton' onClick={handleSave} label={'Guardar'} id2='cancelButton' onClick2={handleCloseModal} label2={'Cancel'} />
+              <ModalButtons id='saveButton' onClick={handleSave} label={'Guardar'} />
+              <ModalButtons id='cancelButton' onClick={handleCloseModal} label={'Cancel'} />
             </div>
           </div>
         </div>
       )}
 
-      {tasks.length > 0 ? (
+      {taskRegistered.length > 0 ? (
         <div className='tasks-container'>
-          {tasks.map((task, index) => (
+          {taskRegistered.map((task, index) => (
             <div key={index} className='task-card'>
               <button onClick={() => handleEditModal(task)}><FaRegEdit /></button>
               <div>{task.name}</div>
