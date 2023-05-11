@@ -126,15 +126,24 @@ ul:hover li a:not(:hover) {
   font-size: 14px;
 }
 
-#cancelButton {
+.cancelButton {
   background-color: #ccc;
   color: #fff;
 }
 
-#saveButton {
+.cancelButton:hover {
+  background-color: #797979;
+}
+
+
+.saveButton {
   background-color: #12b886;
   color: #fff;
   margin-left: 20px;
+}
+
+.saveButton:hover {
+  background-color: #0d815e;
 }
 
 /* ////////////////////////////////// */

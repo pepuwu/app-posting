@@ -2,18 +2,12 @@ import React, { useState } from 'react'
 import { priorityList, statusInitializedList, statusList } from '../../const/constants';
 import { FaRegEdit } from 'react-icons/fa';
 import './index.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { onChangeTask } from '../../redux/actions/taskActions';
 
 const CardRegister = ({ taskRegistered, setShowModal }) => {
-    const [register, setRegister] = useState({
-        id: 0,
-        name: '',
-        email: '',
-        priority: '1',
-        status: '1',
-        task: '',
-        isNew: true
-    })
 
+    const dispatch = useDispatch()
 
     const getNameByArray = (value, array) => {
         const findNameOnArray = array.find((element) => (element.value === value))
@@ -21,7 +15,7 @@ const CardRegister = ({ taskRegistered, setShowModal }) => {
     }
 
     const handleEditModal = (task) => {
-        setRegister(task)
+        dispatch(onChangeTask(task))
         setShowModal(true)
 
     }

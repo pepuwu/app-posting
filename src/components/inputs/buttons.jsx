@@ -1,9 +1,9 @@
 import React from "react";
 
-export const ModalButtons = ({ onClick, label, id }) => {
+export const ModalButtons = ({ onClick, label, className }) => {
     return (
         <React.Fragment>
-            <button id={id} onClick={onClick}>{label}</button>
+            <button className={className} onClick={onClick}>{label}</button>
         </React.Fragment>
 
     )
