@@ -10,7 +10,9 @@ const INITIAL_STATE = {
         task: '',
         isNew: true
     },
-    taskList: []
+    taskList: [],
+    loadingTask: false,
+    errorTask: false,
 }
 
 const TaskReducer = (state = INITIAL_STATE, action = {}) => {
@@ -20,7 +22,11 @@ const TaskReducer = (state = INITIAL_STATE, action = {}) => {
                 ...state,
                 task: action.payload
             }
-
+        case TYPE_TASK.REGISTER_TASKLIST:
+            return {
+                ...state,
+                taskList: action.payload
+            }
         default: return state
     }
 }

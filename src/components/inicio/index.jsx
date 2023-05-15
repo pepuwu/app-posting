@@ -12,7 +12,7 @@ const Body = ({ saveRegister, taskRegistered }) => {
     <React.Fragment>
       <NavBarButton setShowModal={setShowModal} />
       <TaskModal saveRegister={saveRegister} taskRegistered={taskRegistered} showModal={showModal} setShowModal={setShowModal} />
-      <CardRegister taskRegistered={taskRegistered} setShowModal={setShowModal} />
+      <CardRegister setShowModal={setShowModal} />
     </React.Fragment>
   )
 }

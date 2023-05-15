@@ -5,12 +5,18 @@ import { priorityList, statusInitializedList, statusList } from '../../const/con
 import { TextInputs } from '../inputs/textInputs';
 import { ModalButtons } from '../inputs/buttons';
 import './index.css'
-import { onChangeTask } from '../../redux/actions/taskActions';
+import { addTaskList, onChangeTask } from '../../redux/actions/taskActions';
 
 
-const TaskModal = ({ saveRegister, taskRegistered, showModal, setShowModal }) => {
+const TaskModal = ({ showModal, setShowModal }) => {
 
+    const { taskList } = useSelector((state) => state.taskReducer)
     const dispatch = useDispatch()
+    const saveRegister = (register) => {
+        dispatch(addTaskList(register))
+    }
+
+
     const { task } = useSelector(state => state.taskReducer);
     const [editTask, setEditTask] = useState({})
 
@@ -29,13 +35,13 @@ const TaskModal = ({ saveRegister, taskRegistered, showModal, setShowModal }) =>
     const handleSave = () => {
 
         if (task.name !== '' && task.email !== '') {
-            const existingTask = taskRegistered.find((taskItem) => taskItem.id === task.id)
+            const existingTask = taskList.find((taskItem) => taskItem.id === task.id)
             if (!task.isNew) {
-                const updatedTasks = taskRegistered.map((taskItem) => (taskItem.id === existingTask.id ? task : taskItem));
+                const updatedTasks = taskList.map((taskItem) => (taskItem.id === existingTask.id ? task : taskItem));
                 saveRegister(updatedTasks);
             } else {
                 const registerWithID = { ...task, id: task.id += 1, isNew: false };
-                saveRegister([...taskRegistered, registerWithID])
+                saveRegister([...taskList, registerWithID])
 
             }
             setShowModal(false)

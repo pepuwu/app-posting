@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { priorityList, statusInitializedList, statusList } from '../../const/constants';
+import React from 'react'
+import { priorityList, statusList } from '../../const/constants';
 import { FaRegEdit } from 'react-icons/fa';
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { onChangeTask } from '../../redux/actions/taskActions';
+import { addTaskList, onChangeTask } from '../../redux/actions/taskActions';
 
-const CardRegister = ({ taskRegistered, setShowModal }) => {
 
+const CardRegister = ({ setShowModal }) => {
+
+    const { taskList } = useSelector((state) => state.taskReducer)
     const dispatch = useDispatch()
 
     const getNameByArray = (value, array) => {
@@ -20,11 +22,12 @@ const CardRegister = ({ taskRegistered, setShowModal }) => {
 
     }
 
+    console.log(taskList)
     return (
         <React.Fragment>
-            {taskRegistered.length > 0 ? (
+            {taskList.length > 0 ? (
                 <section className='tasks-container'>
-                    {taskRegistered.map((task, index) => (
+                    {taskList.map((task, index) => (
                         <article key={index} className='task-card'>
                             <button onClick={() => handleEditModal(task)}><FaRegEdit /></button>
                             <h2>{task.name}</h2>
