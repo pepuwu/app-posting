@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { priorityList, statusList } from '../../const/constants';
 import { FaRegEdit } from 'react-icons/fa';
-import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { addTaskList, onChangeTask } from '../../redux/actions/taskActions';
+import { onChangeTask } from '../../redux/actions/taskActions';
+import taskIcon from '../../resource/images/task-icon.png';
+import sortIcon from '../../resource/images/sort-icon.png';
 
+import './index.css'
 
 const CardRegister = ({ setShowModal }) => {
-
+    const [sortEnabled, setSortEnabled] = useState(false)
     const { taskList } = useSelector((state) => state.taskReducer)
     const dispatch = useDispatch()
 
@@ -22,22 +24,55 @@ const CardRegister = ({ setShowModal }) => {
 
     }
 
-    console.log(taskList)
+    const getPriorityClass = (priorityIndex) => {
+        if (priorityIndex === 0) {
+            return 'priority-task high-priority';
+        } else if (priorityIndex === 1) {
+            return 'priority-task medium-priority';
+        } else if (priorityIndex === 2) {
+            return 'priority-task low-priority';
+        }
+        return 'priority-task';
+    }
+
+    const handleSort = () => {
+        setSortEnabled(!sortEnabled)
+    }
+
+    let sortedTaskList = sortEnabled ? [...taskList] : taskList.slice().sort((taskA, taskB) => {
+        const priorityIndexA = priorityList.findIndex(item => item.value === taskA.priority);
+        const priorityIndexB = priorityList.findIndex(item => item.value === taskB.priority);
+        return priorityIndexA - priorityIndexB;
+
+    })
+
     return (
         <React.Fragment>
             {taskList.length > 0 ? (
-                <section className='tasks-container'>
-                    {taskList.map((task, index) => (
-                        <article key={index} className='task-card'>
-                            <button onClick={() => handleEditModal(task)}><FaRegEdit /></button>
-                            <h2>{task.name}</h2>
-                            <p>{task.email}</p>
-                            <span className='priority-task'>{getNameByArray(task.priority, priorityList)}</span>
-                            <p>{getNameByArray(task.status, statusList)}</p>
-                            <p>{task.task}</p>
-                        </article>
-                    ))}
-                </section>
+                <div>
+                    <button onClick={handleSort} className={'sort-list-button'}> <img className='sort-list-img' src={sortIcon} /></button>
+                    <section className='tasks-container'>
+                        {sortedTaskList.map((task, index) => (
+                            <article key={index} className='task-card'>
+                                <div className='card-title'>
+                                    <div>
+                                        <img className='title-icon' src={taskIcon} />
+                                        <h2>{task.name}</h2>
+                                    </div>
+                                    <button className='edit-task-button' onClick={() => handleEditModal(task)}><FaRegEdit /></button>
+                                </div>
+                                <p>{task.task}</p>
+                                <div className='card-info-container'>
+                                    <p className='card-email'>{task.email}</p>
+                                    <p className={getPriorityClass(priorityList.findIndex(item => item.value === task.priority))}>
+                                        {getNameByArray(task.priority, priorityList)}
+                                    </p>
+                                    <p className='card-status'>{getNameByArray(task.status, statusList)}</p>
+                                </div>
+                            </article>
+                        ))}
+                    </section>
+                </div>
             ) : (
                 <div className='noTasks'>
                     There are no registered tasks

@@ -1,19 +1,25 @@
 import React from "react"
+import Body from '../inicio'
+import PostingBody from '../posting'
+import { BrowserRouter as Router, Link, } from 'react-router-dom';
 import './index.css'
 
+
 const Navbar = () => {
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
       <nav>
         <div>
           <ul>
-            <li><a href='#'>HOME</a></li>
-            <li><a href='#'>POSTING</a></li>
+            <li><Link to="/inicio">HOME</Link></li>
+            <li><Link to="/posting">POSTING</Link></li>
           </ul>
         </div>
       </nav>
-      </React.Fragment>
-    )
-  }
 
-  export default Navbar
+    </React.Fragment>
+
+  )
+}
+
+export default Navbar

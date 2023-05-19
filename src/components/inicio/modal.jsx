@@ -16,7 +16,6 @@ const TaskModal = ({ showModal, setShowModal }) => {
         dispatch(addTaskList(register))
     }
 
-
     const { task } = useSelector(state => state.taskReducer);
     const [editTask, setEditTask] = useState({})
 
