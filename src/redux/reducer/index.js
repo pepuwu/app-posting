@@ -1,4 +1,10 @@
 import { combineReducers } from "redux"
-import taskReducer from "./taskReducer"
-export default combineReducers({ taskReducer: taskReducer })
+import TaskReducer from "./taskReducer"
+import PostingReducer from './postingReducer';
+
+export default combineReducers({
+    taskReducer: TaskReducer,
+    postingReducer: PostingReducer
+})
+
 
